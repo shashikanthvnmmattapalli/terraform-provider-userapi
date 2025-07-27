@@ -1,15 +1,15 @@
 terraform {
   required_providers {
     userapi = {
-      source = "local/userapi"
+      source  = "local/userapi"
       version = "0.1.0"
     }
   }
 }
 
 provider "userapi" {
-  # Configuration options if any
-  # Example: endpoint = "http://localhost:5000"
+  # Optionally configure endpoint here if needed
+  # endpoint = "http://localhost:5000"
 }
 
 resource "userapi_user" "example" {
@@ -18,18 +18,15 @@ resource "userapi_user" "example" {
   username = "johndoe"
 }
 
-output "user_id" {
-  value = userapi_user.example.id
+# Data source fetching user by ID from resource created above
+data "userapi_user" "fetched_user" {
+  id = userapi_user.example.id
 }
 
-resource "userapi_user" "example1" {
-  name     = "Alice"
-  email    = "alice@example.com"
-  username = "alice123"
+output "fetched_user_name" {
+  value = data.userapi_user.fetched_user.name
 }
 
-resource "userapi_user" "example2" {
-  name     = "Alice1"
-  email    = "alice1@example.com"
-  username = "alice1231"
+output "fetched_user_email" {
+  value = data.userapi_user.fetched_user.email
 }
