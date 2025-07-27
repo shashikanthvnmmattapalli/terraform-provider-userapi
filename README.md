@@ -52,4 +52,10 @@ provider_installation {
 }
 Adjust the path to where your provider binary lives.
 
-
+```
+### Step 4: Execute Terraform Commands
+```hcl
+  Go to main.tf file and execute below commmands
+  terraform plan
+  terraform apply 
+```
