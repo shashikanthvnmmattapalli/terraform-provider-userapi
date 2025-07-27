@@ -71,7 +71,7 @@ func (p *UserAPIProvider) DataSources(ctx context.Context) []func() datasource.D
 func New(version string) func() provider.Provider {
 	return func() provider.Provider {
 		return &UserAPIProvider{
-			version: "0.1.0",
+			version: version,
 		}
 	}
 }
